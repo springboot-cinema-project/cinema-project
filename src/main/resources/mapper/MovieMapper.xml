@@ -5,7 +5,31 @@
 <mapper namespace="com.movie.mapper.MovieMapper">
     <!-- SQL 문 -->
     <insert id="insertMovie">
-        insert into movies (title, running_time, release_date, end_date, genre, content)
-                    values (#{title}, #{runningTime}, #{releaseDate}, #{endDate}, #{genre}, #{content})
+        INSERT INTO
+            movies (title, eng_title, running_time, release_date, end_date, country, production, distribution, genre, director, actor, poster_img, content)
+            VALUES (#{title}, #{engTitle}, #{runningTime}, #{releaseDate}, #{endDate}, #{country}, #{production}, #{distribution}, #{genre}, #{director}, #{actor}, #{posterImg}, #{content})
     </insert>
+
+    <update id="updateMovie">
+        UPDATE
+            movies
+        SET
+            title = #{title},
+            eng_title = #{engTitle},
+            running_time = #{runningTime},
+            release_date = #{releaseDate},
+            end_date = #{endDate},
+            country = #{country},
+            production = #{production},
+            distribution = #{distribution},
+            genre = #{genre},
+            director = #{director},
+            actor = #{actor},
+            poster_img = #{posterImg},
+            content = #{content}
+        WHERE
+            id = #{id}
+
+
+    </update>
 </mapper>

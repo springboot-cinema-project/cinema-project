@@ -3,29 +3,30 @@
     <div class="container-fluid pt-3 px-3">
         <div class="row bg-light rounded align-items-center justify-content-center mx-0" style="min-height: 70vh;">
             <div class="col-md-10"> <!-- 폼의 최대 너비를 설정 -->
-                <h1 class="mb-3 text-center">クーポン登録</h1>
-                <form id="couponForm" name="coupon" method="post" action="/admin/coupon/create">
+                <h1 class="mb-3 text-center">クーポン編集</h1>
+                <form id="couponForm" name="coupon" method="post" action="/admin/coupon/update">
+                    <input type="hidden" th:field="${coupon.id}">
                     <table class="table table-borderless">
                         <tr>
                             <th><label for="coupon_title">coupon_title</label></th>
                             <td>
-                                <input type="text" class="form-control" name="couponTitle" id="coupon_title" required th:text="${coupon.couponTitle}">
+                                <input type="text" class="form-control" name="couponTitle" id="coupon_title" required th:value="${coupon.couponTitle}">
                             </td>
                         </tr>
                         <tr>
                             <th><label for="coupon_type">coupon_type</label></th>
                             <td>
                                 <select class="form-select" name="couponType" id="coupon_type" required>
-                                    <option value="" disabled selected>Choose type</option>
-                                    <option value="P">P</option>
-                                    <option value="Y">Y</option>
+                                    <option value="P" th:selected="${coupon.couponType == 'P'}">P</option>
+                                    <option value="Y" th:selected="${coupon.couponType == 'Y'}">Y</option>
                                 </select>
                             </td>
+
                         </tr>
-                        <tr id="priceRow" style="display: none;">
+                        <tr id="priceRow">
                             <th><label for="coupon_price">coupon_price</label></th>
                             <td>
-                                <input type="number" class="form-control" name="couponPrice" id="coupon_price" min="1" required th:text="${coupon.couponTitle}">
+                                <input type="number" class="form-control" name="couponPrice" id="coupon_price" min="1" required th:value="${coupon.couponPrice}">
                                 <div id="priceError" class="text-danger" style="display: none;">Invalid coupon price.</div>
                             </td>
                         </tr>

@@ -1,7 +1,7 @@
 <th:block th:fragment="content">
             <!-- Movie Create Start -->
             <div class="container-fluid pt-3 px-3">
-                <div class="row bg-light rounded align-items-center justify-content-center mx-0" style="height=150vh;">
+                <div class="row bg-light rounded align-items-center justify-content-center mx-0">
                     <div class="col-md-10"> <!-- 폼의 최대 너비를 설정 -->
                         <h1 class="mb-3 text-center">映画登録</h1>
                         <form name="movie" method="post" action="/admin/movie/create">
@@ -12,12 +12,18 @@
                                         <input type="text" class="form-control" name="title" id="movie_title" placeholder="movie_title">
                                     </td>
                                 </tr>
-                             <!--   <tr>
-                                    <th><label for="poster_img">poster_img</label></th>
+                                <tr>
+                                    <th><label for="movie_eng_title">movie_eng_title</label></th>
                                     <td>
-                                        <input type="file" class="form-control" name="posterImg" id="poster_img">
+                                        <input type="text" class="form-control" name="engTitle" id="movie_eng_title" placeholder="movie_eng_title">
                                     </td>
-                                </tr>-->
+                                </tr>
+                                <tr>
+                                    <th><label for="running_time">running_time</label></th>
+                                    <td>
+                                        <input type="text" class="form-control" name="runningTime" id="running_time" placeholder="movie_time">
+                                    </td>
+                                </tr>
                                 <tr>
                                     <th><label for="movie_release_date">movie_release_date</label></th>
                                     <td>
@@ -31,35 +37,71 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th><label for="running_time">running_time</label></th>
+                                    <th><label for="country">country</label></th>
                                     <td>
-                                        <input type="text" class="form-control" name="runningTime" id="running_time" placeholder="movie_time">
+                                        <select class="form-select" name="country" id="country">
+                                            <option value="日本">日本</option>
+                                            <option value="韓国">韓国</option>
+                                            <option value="中国">中国</option>
+                                            <option value="アメリカ">アメリカ</option>
+                                            <option value="イギリス">イギリス</option>
+                                            <option value="ドイツ">ドイツ</option>
+                                            <option value="インド">インド</option>
+                                            <option value="フランス">フランス</option>
+                                        </select>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th><label for="content">content</label></th>
+                                    <th><label for="production">production</label></th>
                                     <td>
-                                        <textarea class="form-control" name="content" id="content" placeholder="content" style="width:100%; resize:none; padding:8px; height:300px;"></textarea>
+                                        <input type="text" class="form-control" name="production" id="production" placeholder="production">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><label for="distribution">distribution</label></th>
+                                    <td>
+                                        <input type="text" class="form-control" name="distribution" id="distribution" placeholder="distribution">
                                     </td>
                                 </tr>
                                 <tr>
                                     <th><label for="genre">genre</label></th>
                                     <td>
                                         <select class="form-select" name="genre" id="genre">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
+                                            <option value="アニメ">アニメ</option>
+                                            <option value="アクション">アクション</option>
+                                            <option value="コメディ">コメディ</option>
+                                            <option value="ラブロマンス">ラブロマンス</option>
+                                            <option value="ホラー">ホラー</option>
+                                            <option value="SF">SF</option>
+                                            <option value="ファンタジー">ファンタジー</option>
+                                            <option value="ヒューマンドラマ">ヒューマンドラマ</option>
+                                            <option value="スポーツ">スポーツ</option>
+                                            <option value="ドキュメンタリー">ドキュメンタリー</option>
                                         </select>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th><label for="movie_age">movie_age</label></th>
+                                    <th><label for="director">director</label></th>
                                     <td>
-                                        <select class="form-select" name="movie_age" id="movie_age">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                        </select>
+                                        <input type="text" class="form-control" name="director" id="director" placeholder="director">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><label for="actor">actor</label></th>
+                                    <td>
+                                        <input type="text" class="form-control" name="actor" id="actor" placeholder="actor">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><label for="poster_img">poster_img</label></th>
+                                    <td>
+                                        <input type="file" class="form-control" name="posterImg" id="poster_img">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><label for="content">content</label></th>
+                                    <td>
+                                        <textarea class="form-control" name="content" id="content" placeholder="content" style="width:100%; resize:none; padding:8px; height:300px;"></textarea>
                                     </td>
                                 </tr>
                             </table>

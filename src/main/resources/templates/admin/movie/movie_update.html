@@ -1,66 +1,119 @@
 <th:block th:fragment="content">
-            <!-- Movie Update Start -->
-            <div class="container-fluid pt-3 px-3">
-                <div class="row bg-light rounded align-items-center justify-content-center mx-0" style="min-height: 70vh;">
-                    <div class="col-md-10"> <!-- 폼의 최대 너비를 설정 -->
-                        <h1 class="mb-3 text-center">映画編集</h1>
-                        <form name="movie">
-                            <table class="table table-borderless">
-                                <tr>
-                                    <th><label for="movie_name">movie_name</label></th>
-                                    <td>
-                                        <input type="text" class="form-control" name="movie_name" id="movie_name" placeholder="event_name">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th><label for="movie_poster">movie_poster</label></th>
-                                    <td>
-                                        <input type="file" class="form-control" name="movie_poster" id="movie_poster">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th><label for="movie_start">movie_start</label></th>
-                                    <td>
-                                        <input type="date" class="form-control" name="movie_start" id="movie_start">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th><label for="movie_end">movie_end</label></th>
-                                    <td>
-                                        <input type="date" class="form-control" name="movie_end" id="movie_end">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th><label for="movie_time">movie_time</label></th>
-                                    <td>
-                                        <input type="text" class="form-control" name="movie_time" id="movie_time" placeholder="movie_time">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th><label for="movie_content">movie_content</label></th>
-                                    <td>
-                                        <textarea class="form-control" name="movie_content" id="movie_content" placeholder="movie_content" style="width:100%; resize:none; padding:8px; height:300px;"></textarea>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th><label for="movie_category">movie_category</label></th>
-                                    <td>
-                                        <select class="form-select" name="movie_category" id="movie_category">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                            </table>
-                            <div class="mt-4 text-end">
-                                <button type="submit" class="btn btn-sm btn-primary rounded-pill m-2">登録</button>
-                            </div>
-                        </form>
+    <!-- Movie Create Start -->
+    <div class="container-fluid pt-3 px-3">
+        <div class="row bg-light rounded align-items-center justify-content-center mx-0">
+            <div class="col-md-10"> <!-- 폼의 최대 너비를 설정 -->
+                <h1 class="mb-3 text-center">映画編集</h1>
+                <form name="movie" method="post" action="/admin/movie/update" th:object="${movie}">
+                    <input type="hidden" th:field="${movie.id}">
+                    <table class="table table-borderless" >
+                        <tr>
+                            <th><label for="movie_title">movie_title</label></th>
+                            <td>
+                                <input type="text" class="form-control" name="title" id="movie_title" th:value="${movie.title}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><label for="movie_eng_title">movie_eng_title</label></th>
+                            <td>
+                                <input type="text" class="form-control" name="engTitle" id="movie_eng_title"  th:value="${movie.engTitle}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><label for="running_time">running_time</label></th>
+                            <td>
+                                <input type="text" class="form-control" name="runningTime" id="running_time"  th:value="${movie.runningTime}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><label for="movie_release_date">movie_release_date</label></th>
+                            <td>
+                                <input type="date" class="form-control" name="releaseDate" id="movie_release_date"  th:value="${movie.releaseDate}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><label for="movie_end_date">movie_end_date</label></th>
+                            <td>
+                                <input type="date" class="form-control" name="endDate" id="movie_end_date"  th:value="${movie.endDate}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><label for="country">country</label></th>
+                            <td>
+                                <select class="form-select" name="country" id="country" th:field="*{country}">
+                                    <option value="日本">日本</option>
+                                    <option value="韓国">韓国</option>
+                                    <option value="中国">中国</option>
+                                    <option value="アメリカ">アメリカ</option>
+                                    <option value="イギリス">イギリス</option>
+                                    <option value="ドイツ">ドイツ</option>
+                                    <option value="インド">インド</option>
+                                    <option value="フランス">フランス</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><label for="production">production</label></th>
+                            <td>
+                                <input type="text" class="form-control" name="production" id="production"  th:value="${movie.production}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><label for="distribution">distribution</label></th>
+                            <td>
+                                <input type="text" class="form-control" name="distribution" id="distribution" th:value="${movie.distribution}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><label for="genre">genre</label></th>
+                            <td>
+                                <select class="form-select" name="genre" id="genre" th:field="*{genre}">
+                                    <option value="アニメ">アニメ</option>
+                                    <option value="アクション">アクション</option>
+                                    <option value="コメディ">コメディ</option>
+                                    <option value="ラブロマンス">ラブロマンス</option>
+                                    <option value="ホラー">ホラー</option>
+                                    <option value="SF">SF</option>
+                                    <option value="ファンタジー">ファンタジー</option>
+                                    <option value="ヒューマンドラマ">ヒューマンドラマ</option>
+                                    <option value="スポーツ">スポーツ</option>
+                                    <option value="ドキュメンタリー">ドキュメンタリー</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><label for="director">director</label></th>
+                            <td>
+                                <input type="text" class="form-control" name="director" id="director" th:value="${movie.director}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><label for="actor">actor</label></th>
+                            <td>
+                                <input type="text" class="form-control" name="actor" id="actor" th:value="${movie.actor}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><label for="poster_img">poster_img</label></th>
+                            <td>
+                                <input type="file" class="form-control" name="posterImg" id="poster_img">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><label for="content">content</label></th>
+                            <td>
+                                <textarea class="form-control" name="content" id="content" style="width:100%; resize:none; padding:8px; height:300px;" th:text="${movie.content}"></textarea>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="mt-4 text-end">
+                        <button type="submit" class="btn btn-sm btn-primary rounded-pill m-2">登録</button>
                     </div>
-                </div>
+                </form>
             </div>
-            <!-- Movie Update End -->
+        </div>
+    </div>
+    <!-- Movie Create End -->
     <script>
         // 날짜 포맷 함수
     function formatDate(date) {
@@ -76,13 +129,13 @@
     oneWeekLater.setDate(today.getDate() + 7);
 
     // 기본 값 설정
-    document.getElementById("movie_start").value = formatDate(today);
-    document.getElementById("movie_end").value = formatDate(oneWeekLater);
+    document.getElementById("movie_release_date").value = formatDate(today);
+    document.getElementById("movie_end_date").value = formatDate(oneWeekLater);
 
     // End 날짜 제한 (Start 날짜 이후만 선택 가능)
-    document.getElementById("movie_start").addEventListener("change", function() {
+    document.getElementById("movie_release_date").addEventListener("change", function() {
         const startDate = this.value;
-        document.getElementById("movie_end").setAttribute("min", startDate);
+        document.getElementById("movie_end_end").setAttribute("min", startDate);
     });
 
 
