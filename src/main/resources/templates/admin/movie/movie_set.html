@@ -1,0 +1,101 @@
+<th:block th:fragment="content">
+    <!-- Movie Set Start -->
+    <div class="container-fluid pt-3 px-3">
+        <div class="row bg-light rounded align-items-center justify-content-center mx-0" style="min-height: 70vh;">
+            <div class="col-md-10">
+                <!-- 제목 -->
+                <h1 class="mb-3 text-center">時間指定</h1>
+                <h4 class="mb-3 text-start">제목</h4>
+
+                <form name="screening">
+                    <!-- 날짜 선택 -->
+                    <h6 class="mb-4">날짜</h6>
+                    <input type="date" id="movieDate" class="form-control" min="2024-12-19" max="2024-12-31" onchange="handleDateSelection()">
+
+                    <!-- 상영관 선택 -->
+                    <div id="theaterContainer" class="mt-4" style="display: none;">
+                        <h6 class="mb-3">상영관</h6>
+                        <div class="btn-group" role="group">
+                            <input type="checkbox" class="btn-check theater" id="2D" autocomplete="off" onclick="handleTheaterSelection(this)">
+                            <label class="btn btn-outline-primary" for="2D">2D</label>
+
+                            <input type="checkbox" class="btn-check theater" id="3D" autocomplete="off" onclick="handleTheaterSelection(this)">
+                            <label class="btn btn-outline-primary" for="3D">3D</label>
+
+                            <input type="checkbox" class="btn-check theater" id="4DX" autocomplete="off" onclick="handleTheaterSelection(this)">
+                            <label class="btn btn-outline-primary" for="4DX">4DX</label>
+
+                            <input type="checkbox" class="btn-check theater" id="IMAX" autocomplete="off" onclick="handleTheaterSelection(this)">
+                            <label class="btn btn-outline-primary" for="IMAX">IMAX</label>
+                        </div>
+                    </div>
+
+                    <!-- 시간 선택 -->
+                    <div id="timeContainer" class="mt-4"></div>
+
+                    <div class="mt-4 text-end">
+                        <button type="submit" class="btn btn-sm btn-primary rounded-pill m-2">登録</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Movie Set End -->
+
+    <!-- JavaScript -->
+    <script>
+        // 각 상영관별 시간 데이터
+        const theaterTimes = {
+            "2D": ["10:00", "12:00", "14:00"],
+            "3D": ["11:00", "13:00", "15:00"],
+            "4DX": ["12:30", "14:30", "16:30"],
+            "IMAX": ["10:30", "13:30", "16:00"]
+        };
+
+        // 날짜 선택 시 상영관 표시
+        function handleDateSelection() {
+            const movieDate = document.getElementById("movieDate").value;
+            const theaterContainer = document.getElementById("theaterContainer");
+
+            if (movieDate) {
+                theaterContainer.style.display = "block";
+            } else {
+                theaterContainer.style.display = "none";
+                resetSelections(); // 상영관 및 시간 초기화
+            }
+        }
+
+        // 상영관 선택 시 시간 선택 표시
+        function handleTheaterSelection(checkbox) {
+            const timeContainer = document.getElementById("timeContainer");
+            const theaterId = checkbox.id;
+
+            if (checkbox.checked) {
+                // 시간 드롭다운 추가
+                const timeSelectDiv = document.createElement("div");
+                timeSelectDiv.id = `time-${theaterId}`;
+                timeSelectDiv.innerHTML = `
+                    <h6 class="mt-3">${theaterId} 시간 선택</h6>
+                    <select class="form-select" name="time-${theaterId}">
+                        ${theaterTimes[theaterId].map(time => `<option value="${time}">${time}</option>`).join('')}
+                    </select>
+                `;
+                timeContainer.appendChild(timeSelectDiv);
+            } else {
+                // 시간 드롭다운 제거
+                const timeSelectDiv = document.getElementById(`time-${theaterId}`);
+                if (timeSelectDiv) {
+                    timeContainer.removeChild(timeSelectDiv);
+                }
+            }
+        }
+
+        // 선택 초기화
+        function resetSelections() {
+            const timeContainer = document.getElementById("timeContainer");
+            const theaterContainer = document.getElementById("theaterContainer");
+            timeContainer.innerHTML = ""; // 시간 선택 초기화
+            theaterContainer.querySelectorAll("input[type=checkbox]").forEach(cb => cb.checked = false); // 상영관 체크박스 초기화
+        }
+    </script>
+</th:block>
