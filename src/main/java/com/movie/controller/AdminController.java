@@ -1,8 +1,10 @@
 package com.movie.controller;
 
 import com.movie.domain.Coupons;
+import com.movie.domain.Events;
 import com.movie.domain.Movies;
 import com.movie.service.CouponService;
+import com.movie.service.EventService;
 import com.movie.service.MovieService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,7 @@ public class AdminController {
 
     private final MovieService movieService;
     private final CouponService couponService;
+    private final EventService eventService;
 
     @GetMapping({"", "/"})
     public String admin(Model model) {
@@ -39,7 +42,7 @@ public class AdminController {
         long result = movieService.insertMovie(movies);
 
         if(result > 0) {
-            return "redirect:/admin/";
+            return "redirect:/admin/movie/list";
         } else {
             return "redirect:/admin/movie/create";
         }
@@ -79,20 +82,20 @@ public class AdminController {
         long result = couponService.insertCoupon(coupons);
 
         if(result > 0) {
-            return "redirect:/admin/";
+            return "redirect:/admin/coupon/list";
         } else {
-            return "redirect:/admin/movie/create";
+            return "redirect:/admin/coupon/create";
         }
     }
 
     @GetMapping("/coupon/list")
     public String couponList(Model model) {
 
-        List<Coupons> list = couponService.couponList();
+        List<Coupons> coupons = couponService.couponList();
 
         model.addAttribute("content", "admin/coupon/coupon_list");
         model.addAttribute("title", "admin-coupon-list");
-        model.addAttribute("coupons", list);
+        model.addAttribute("coupons", coupons);
 
         return "admin/layout/admin_base";
     }
@@ -134,8 +137,34 @@ public class AdminController {
         return "admin/layout/admin_base";
     }
 
+    @PostMapping("/event/create")
+    public String insertEvent(Events events) {
+
+        long result = eventService.insertEvent(events);
+
+        if(result > 0) {
+            return "redirect:/admin/event/list";
+        } else {
+            return "redirect:/admin/event/create";
+        }
+
+    }
+
+    @GetMapping("/event/list")
+    public String eventList(Model model) {
+
+        List<Events> events = eventService.eventManageList();
+
+        model.addAttribute("content", "admin/event/event_list");
+        model.addAttribute("title", "admin-event-list");
+        model.addAttribute("events", events);
+
+        return "admin/layout/admin_base";
+    }
+
     @GetMapping("/event/update")
     public String eventUpdate(Model model) {
+
         model.addAttribute("content", "admin/event/event_update");
         model.addAttribute("title", "admin-event-update");
         return "admin/layout/admin_base";

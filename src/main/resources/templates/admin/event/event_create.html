@@ -4,38 +4,44 @@
                 <div class="row bg-light rounded align-items-center justify-content-center mx-0" style="min-height: 70vh;">
                     <div class="col-md-10"> <!-- 폼의 최대 너비를 설정 -->
                         <h1 class="mb-3 text-center">イベント登録</h1>
-                        <form name="event">
+                        <form name="event" id="eventForm" method="post" action="/admin/event/create">
                             <table class="table table-borderless">
                                 <tr>
                                     <th><label for="event_name">event_name</label></th>
                                     <td>
-                                        <input type="text" class="form-control" name="event_name" id="event_name" placeholder="event_name">
+                                        <input type="text" class="form-control" name="eventTitle" id="event_name" placeholder="event_name">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><label for="event_img">event_img</label></th>
+                                    <td>
+                                        <input type="file" class="form-control" name="eventImg" id="event_img">
                                     </td>
                                 </tr>
                                 <tr>
                                     <th><label for="event_start">event_start</label></th>
                                     <td>
-                                        <input type="date" class="form-control" name="event_start" id="event_start">
+                                        <input type="date" class="form-control" name="eventStartDate" id="event_start">
                                     </td>
                                 </tr>
                                 <tr>
                                     <th><label for="event_end">event_end</label></th>
                                     <td>
-                                        <input type="date" class="form-control" name="event_end" id="event_end">
+                                        <input type="date" class="form-control" name="eventEndDate" id="event_end">
                                     </td>
                                 </tr>
                                 <tr>
                                     <th><label for="event_content">event_content</label></th>
                                     <td>
-                                        <textarea class="form-control" name="event_content" id="event_content" placeholder="event_content" style="width:100%; resize:none; padding:8px; height:300px;"></textarea>
+                                        <textarea class="form-control" name="eventContent" id="event_content" placeholder="event_content" style="width:100%; resize:none; padding:8px; height:300px;"></textarea>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th><label for="coupon">coupon</label></th>
                                     <td>
-                                        <select class="form-select" name="coupon" id="coupon">
+                                        <select class="form-select" name="couponId" id="coupon">
                                             <th:block th:each="coupon : ${coupons}">
-                                                <option value="" th:text="${coupon.couponTitle}" th:attr="data-couponId=${coupon.id}"></option>
+                                                <option th:value="${coupon.id}" th:text="${coupon.couponTitle}" th:attr="data-couponId=${coupon.id}"></option>
                                             </th:block>
                                         </select>
                                     </td>

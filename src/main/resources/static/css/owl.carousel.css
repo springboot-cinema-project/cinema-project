@@ -167,3 +167,142 @@
   z-index: 1;
   height: 100%;
   width: 100%; }
+
+/* 그리드 레이아웃 설정 */
+.event-grid {
+  display: flex; /* 플렉스 박스 사용 */
+  flex-wrap: wrap; /* 줄 바꿈 허용 */
+  gap: 20px; /* 요소 간 간격 */
+  justify-content: space-between; /* 요소를 균등하게 배치 */
+  margin: 20px 0; /* 위아래 여백 */
+}
+
+/* 그리드 내 개별 박스 */
+.prs_es_tabs_event_sche_main_box_wrapper {
+  flex: 1 1 calc(33.33% - 20px); /* 3개씩 배치 */
+  display: flex; /* 플렉스 박스 */
+  flex-direction: column; /* 세로 방향 정렬 */
+  align-items: center; /* 가로 중앙 정렬 */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+  border-radius: 8px; /* 모서리 둥글게 설정 */
+  overflow: hidden; /* 넘침 요소 숨김 */
+  background-color: #fff; /* 배경색 흰색 */
+  max-width: calc(33.33% - 20px); /* 최대 너비 */
+  text-align: center; /* 텍스트 중앙 정렬 */
+}
+
+/* 그리드 내 이미지 스타일 */
+.prs_es_tabs_event_sche_img_wrapper img {
+  width: 80%; /* 너비를 80%로 설정 */
+  height: 80%; /* 높이를 80%로 설정 */
+  object-fit: cover; /* 이미지 비율 유지하며 박스 채우기 */
+  border-radius: 10px; /* 모서리를 둥글게 설정 */
+  display: block; /* 블록 요소 */
+}
+
+/* 제목 텍스트 스타일 */
+.prs_es_tabs_event_sche_img_cont_wrapper h2 {
+  font-size: 20px; /* 글자 크기 */
+  margin-bottom: 10px; /* 아래쪽 여백 */
+  color: #333; /* 글자 색상 */
+}
+
+/* 부제목 텍스트 스타일 */
+.prs_es_tabs_event_sche_img_cont_wrapper h3 {
+  font-size: 16px; /* 글자 크기 */
+  margin-bottom: 10px; /* 아래쪽 여백 */
+  color: #555; /* 글자 색상 */
+}
+
+/* 이벤트 박스 스타일 */
+.prs_es_tabs_event_box_img_cont_wrapper {
+  float: left; /* 왼쪽 정렬 */
+  background: #ffffff; /* 흰색 배경 */
+  padding: 20px; /* 패딩 설정 */
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.10); /* 그림자 효과 */
+  border-radius: 10px; /* 모서리를 둥글게 설정 */
+  transition: all 0.5s; /* 부드러운 전환 효과 */
+}
+
+/* 이벤트 박스 hover 효과 */
+.prs_es_tabs_event_box_img_cont_wrapper:hover {
+  box-shadow: 0px 1px 20px 0px rgba(0, 0, 0, 0.10); /* hover 시 그림자 강화 */
+  transition: all 0.5s; /* 부드러운 전환 효과 */
+}
+
+/* 이벤트 제목 스타일 */
+.prs_es_tabs_event_box_img_cont_wrapper h2 {
+  font-size: 20px; /* 제목 글자 크기 */
+  color: #000000; /* 글자 색상 */
+  text-transform: uppercase; /* 대문자로 표시 */
+  font-weight: 600; /* 굵은 글자 */
+}
+
+/* 이벤트 날짜 및 시간 스타일 */
+.prs_es_tabs_event_box_img_cont_wrapper h3 {
+  color: #614aee; /* 강조 색상 */
+  font-size: 16px; /* 글자 크기 */
+  padding-top: 10px; /* 위쪽 패딩 */
+}
+
+/* 이벤트 시간 강조 스타일 */
+.prs_es_tabs_event_box_img_cont_wrapper h3 span {
+  color: #000000; /* 글자 색상 */
+}
+/* Owl Carousel 네비게이션 버튼 */
+.owl-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+
+/* 슬라이드 이미지 컨테이너 */
+.hs_blog_slider_img_wrapper {
+  width: 100% !important; /* 전체 너비 */
+  height: 500px !important; /* 슬라이더 고정 높이 */
+  overflow: hidden; /* 넘침 숨김 */
+  border-radius: 10px !important; /* 모서리를 둥글게 설정 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important; /* 그림자 효과 */
+  display: flex !important; /* 플렉스 박스 사용 */
+  align-items: center !important; /* 수직 중앙 정렬 */
+  justify-content: center !important; /* 가로 중앙 정렬 */
+  background-color: #000; /* 빈 공간 배경색 설정 */
+  padding: 0; /* 컨테이너 패딩 제거 */
+  margin: 0; /* 컨테이너 마진 제거 */
+}
+
+/* 슬라이드 이미지 스타일 */
+.hs_blog_slider_img_wrapper img {
+  width: 100% !important; /* 슬라이더 창 너비에 맞춤 */
+  height: auto !important; /* 비율을 유지하며 높이 자동 조정 */
+  max-height: 500px !important; /* 높이가 슬라이더를 초과하지 않음 */
+  display: block; /* 블록 요소 */
+}
+
+
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5); /* 반투명 배경 */
+  color: white;
+  padding: 10px 15px;
+  border-radius: 50%; /* 둥근 버튼 */
+  cursor: pointer;
+  z-index: 1000; /* 슬라이더 위에 표시되도록 설정 */
+}
+
+.prev-slide {
+  left: 10px; /* 슬라이더 내부로 이동 (왼쪽 버튼) */
+}
+
+.next-slide {
+  right: 10px; /* 슬라이더 내부로 이동 (오른쪽 버튼) */
+}
+
+.nav-btn:hover {
+  background-color: rgba(255, 255, 255, 0.7); /* 호버 시 밝아짐 */
+  color: black;
+}

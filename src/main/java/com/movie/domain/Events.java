@@ -2,7 +2,7 @@ package com.movie.domain;
 
 import lombok.Data;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Data
 public class Events {
@@ -11,8 +11,9 @@ public class Events {
     private String eventTitle;
     private String eventContent;
     private String eventImg;
-    private LocalDateTime EventStartDate;
-    private LocalDateTime EventEndDate;
+    private LocalDate eventStartDate;
+    private LocalDate eventEndDate;
     private long couponId;
+    private String couponTitle;
 
 }

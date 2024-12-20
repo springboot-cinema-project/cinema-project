@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.movie.mapper.EventMapper">
+    <!-- SQL 문 -->
+    <select id="eventManageList">
+        SELECT
+            events.*,
+            coupons.coupon_title
+        FROM
+            events
+        JOIN
+            coupons
+        ON
+            events.coupon_id = coupons.id;
+    </select>
+</mapper>
