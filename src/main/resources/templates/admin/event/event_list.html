@@ -1,5 +1,5 @@
 <th:block th:fragment="content">
-    <!-- Users Start -->
+    <!-- Event List Start -->
     <div class="container-fluid pt-3 px-3">
         <div class="row bg-light rounded align-items-center justify-content-center mx-0">
             <div class="col-12">
@@ -39,13 +39,13 @@
             </div>
         </div>
     </div>
-    <!-- Users End -->
+    <!-- Event List End -->
     <script>
         $(document).on("click", ".delete-btn", function () {
             var row = $(this).closest("tr"); // 클릭한 버튼의 해당 행
             var id = $(this).data("id"); // 쿠폰 ID
 
-            if (confirm("このクーポンを削除してもよろしいですか？")) {
+            if (confirm("このイベントを削除してもよろしいですか？")) {
                 $.ajax({
                     url: '/admin/event/delete',
                     type: 'POST',

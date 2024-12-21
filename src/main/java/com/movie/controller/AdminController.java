@@ -49,9 +49,14 @@ public class AdminController {
     }
 
     @GetMapping("/movie/list")
-    public String movieList(Model model) {
+    public String movieManageList(Model model) {
+
+        List<Movies> movies = movieService.movieManageList();
+
         model.addAttribute("content", "admin/movie/movie_list");
         model.addAttribute("title", "admin-movie-list");
+        model.addAttribute("movies", movies);
+
         return "admin/layout/admin_base";
     }
 
@@ -63,14 +68,48 @@ public class AdminController {
     }
 
     @GetMapping("/movie/update")
-    public String movieUpdate(Model model) {
+    public String movieManage(@RequestParam("id") long id, Model model) {
+
+        Movies movie = movieService.movieDetail(id);
+
         model.addAttribute("content", "admin/movie/movie_update");
         model.addAttribute("title", "admin-movie-update");
+        model.addAttribute("movie", movie);
+
         return "admin/layout/admin_base";
+    }
+
+    @PostMapping("/movie/update")
+    public String movieUpdate(Movies movies, Model model) {
+
+        long result = movieService.updateMovie(movies);
+
+        if(result > 0) {
+            return "redirect:/admin/movie/list";
+        } else {
+
+            long id = movies.getId();
+
+            return "redirect:/admin/movie/update";
+        }
+    }
+
+    @PostMapping("/movie/delete")
+    @ResponseBody
+    public String deleteMovie(@RequestParam("id") long id) {
+
+        long result = movieService.deleteMovie(id);
+
+        if(result > 0) {
+            return "success";
+        } else {
+            return "fail";
+        }
     }
 
     @GetMapping("/coupon/create")
     public String couponCreate(Model model) {
+
         model.addAttribute("content", "admin/coupon/coupon_create");
         model.addAttribute("title", "admin-coupon-create");
         return "admin/layout/admin_base";
@@ -101,15 +140,30 @@ public class AdminController {
     }
 
     @GetMapping("/coupon/update")
-    public String updateCoupon(@RequestParam("id") long id, Model model) {
+    public String couponManage(@RequestParam("id") long id, Model model) {
 
-        Coupons coupon = couponService.selectCoupon(id);
+        Coupons coupon = couponService.couponDetail(id);
 
         model.addAttribute("content", "admin/coupon/coupon_update");
         model.addAttribute("title", "admin-coupon-list");
         model.addAttribute("coupon", coupon);
 
         return "admin/layout/admin_base";
+    }
+
+    @PostMapping("/coupon/update")
+    public String updateCoupon(Coupons coupons, Model model) {
+
+        long result = couponService.updateCoupon(coupons);
+
+        if(result > 0) {
+            return "redirect:/admin/coupon/list";
+        } else {
+
+            long id = coupons.getId();
+
+            return "redirect:/admin/coupon/update?id=" + id;
+        }
     }
 
     @PostMapping("/coupon/delete")
@@ -163,15 +217,52 @@ public class AdminController {
     }
 
     @GetMapping("/event/update")
-    public String eventUpdate(Model model) {
+    public String eventDetail(@RequestParam("id") long id, Model model) {
+
+        Events events = eventService.eventDetail(id);
+        List<Coupons> coupons = couponService.couponList();
 
         model.addAttribute("content", "admin/event/event_update");
         model.addAttribute("title", "admin-event-update");
+        model.addAttribute("event", events);
+        model.addAttribute("coupons", coupons);
+
         return "admin/layout/admin_base";
+    }
+
+    @PostMapping("/event/update")
+    public String updateEvent(Events events) {
+
+        long result = eventService.updateEvent(events);
+
+        if(result > 0) {
+            return "redirect:/admin/event/list";
+        } else {
+
+            long id = events.getId();
+
+            return "redirect:/admin/event/update?id=" + id;
+        }
+
+    }
+
+    @PostMapping("/event/delete")
+    @ResponseBody
+    public String deleteEvent(@RequestParam("id") long id, Model model) {
+
+        long result = eventService.deleteEvent(id);
+
+        if(result > 0) {
+            return "success";
+        } else {
+            return "fail";
+        }
+
     }
 
     @GetMapping("/users")
     public String users(Model model) {
+
         model.addAttribute("content", "admin/users/users");
         model.addAttribute("title", "admin-users");
         return "admin/layout/admin_base";

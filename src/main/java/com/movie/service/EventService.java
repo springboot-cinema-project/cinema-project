@@ -22,4 +22,16 @@ public class EventService {
     public List<Events> eventManageList() {
         return eventMapper.eventManageList();
     }
+
+    public Events eventDetail(long id) {
+        return eventMapper.eventDetail(id);
+    }
+
+    public long updateEvent(Events events) {
+        return eventMapper.updateEvent(events);
+    }
+
+    public long deleteEvent(long id) {
+        return eventMapper.deleteEvent(id);
+    }
 }

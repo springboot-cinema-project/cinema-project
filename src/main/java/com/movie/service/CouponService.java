@@ -21,8 +21,8 @@ public class CouponService {
         return couponMapper.couponList();
     }
 
-    public Coupons selectCoupon(long id) {
-        return couponMapper.selectCoupon(id);
+    public Coupons couponDetail(long id) {
+        return couponMapper.couponDetail(id);
     }
 
     public long updateCoupon(Coupons coupons) {

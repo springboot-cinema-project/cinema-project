@@ -13,6 +13,23 @@
         JOIN
             coupons
         ON
-            events.coupon_id = coupons.id;
+            events.coupon_id = coupons.id
+        ORDER BY
+            events.id DESC
     </select>
+
+    <update id="updateEvent">
+        UPDATE
+            events
+        SET
+            event_title = #{eventTitle},
+            event_content = #{eventContent},
+            event_img = #{eventImg},
+            event_start_date = #{eventStartDate},
+            event_end_date = #{eventEndDate},
+            coupon_id = #{couponId}
+        WHERE
+            id = #{id}
+
+    </update>
 </mapper>

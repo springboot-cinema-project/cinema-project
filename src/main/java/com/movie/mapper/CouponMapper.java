@@ -8,18 +8,19 @@ import java.util.List;
 @Mapper
 public interface CouponMapper {
 
-    @Insert("insert into coupons (coupon_title, coupon_type, coupon_price) values (#{couponTitle}, #{couponType}, #{couponPrice})")
+    @Insert("INSERT INTO coupons (coupon_title, coupon_type, coupon_price) " +
+            " VALUES (#{couponTitle}, #{couponType}, #{couponPrice})")
     long insertCoupon(Coupons coupons);
 
-    @Select("select * from coupons order by id desc")
+    @Select("SELECT * FROM coupons ORDER BY id DESC")
     List<Coupons> couponList();
 
-    @Select("select * from coupons where id = #{id}")
-    Coupons selectCoupon(long id);
+    @Select("SELECT * FROM coupons WHERE id = #{id}")
+    Coupons couponDetail(long id);
 
-    @Update("update set coupons coupon_title = #{couponTitle}, coupon_type = #{couponType}, coupon_price = #{couponPrice} where id = #{id}")
+    @Update("UPDATE coupons SET coupon_title = #{couponTitle}, coupon_type = #{couponType}, coupon_price = #{couponPrice} WHERE id = #{id}")
     long updateCoupon(Coupons coupons);
 
-    @Delete("delete from coupons where id = #{id}")
+    @Delete("DELETE FROM coupons WHERE id = #{id}")
     long deleteCoupon(long id);
 }
