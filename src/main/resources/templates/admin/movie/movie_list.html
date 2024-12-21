@@ -11,11 +11,10 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">title</th>
-                                <th scope="col">genre</th>
                                 <th scope="col">running_time</th>
                                 <th scope="col">release_date</th>
                                 <th scope="col">end_date</th>
-                                <th scope="col">modify</th>
+                                <th scope="col">set</th>
                                 <th scope="col">delete</th>
                             </tr>
                             </thead>
@@ -26,12 +25,11 @@
                                     <td>
                                         <a th:href="@{/admin/movie/update(id=${movies.id})}" th:text="${movies.title}"></a>
                                     </td>
-                                    <td th:text="${movies.genre}"></td>
                                     <td th:text="${movies.runningTime}"></td>
                                     <td th:text="${movies.releaseDate}"></td>
                                     <td th:text="${movies.endDate}"></td>
                                     <td>
-                                        <a th:href="@{/admin/movie/update(id=${movies.id})}"><button type="button" class="btn btn-sm btn-info rounded-pill m-2 modify-btn" th:attr="data-id=${movies.id}">編集</button></a>
+                                        <a th:href="@{/admin/movie/set(id=${movies.id})}"><button type="button" class="btn btn-sm btn-info rounded-pill m-2 modify-btn" th:attr="data-id=${movies.id}">設定</button></a>
                                     </td>
                                     <td>
                                         <button type="button" class="btn btn-sm btn-danger rounded-pill m-2 delete-btn" th:attr="data-id=${movies.id}">削除</button>

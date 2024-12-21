@@ -2,14 +2,17 @@ package com.movie.domain;
 
 import lombok.Data;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Data
 public class Schedules {
 
     private long id;
-    private long theaterScreenId;
+    private int screenId;
     private long movieId;
-    private LocalDateTime watchDate;
+    private LocalDate watchDate;
+    private LocalTime startTime;
+    private LocalTime endTime;
 
 }

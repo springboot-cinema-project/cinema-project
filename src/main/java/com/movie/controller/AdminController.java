@@ -3,10 +3,14 @@ package com.movie.controller;
 import com.movie.domain.Coupons;
 import com.movie.domain.Events;
 import com.movie.domain.Movies;
+import com.movie.domain.Schedules;
 import com.movie.service.CouponService;
 import com.movie.service.EventService;
 import com.movie.service.MovieService;
+import com.movie.service.ScheduleService;
+import com.movie.util.MovieSchedulesWrapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +25,7 @@ public class AdminController {
     private final MovieService movieService;
     private final CouponService couponService;
     private final EventService eventService;
+    private final ScheduleService scheduleService;
 
     @GetMapping({"", "/"})
     public String admin(Model model) {
@@ -39,10 +44,10 @@ public class AdminController {
     @PostMapping("/movie/create")
     public String insertMovie(Movies movies) {
 
-        long result = movieService.insertMovie(movies);
+        long id = movieService.insertMovie(movies);
 
-        if(result > 0) {
-            return "redirect:/admin/movie/list";
+        if(id > 0) {
+            return "redirect:/admin/movie/set?id=" + id;
         } else {
             return "redirect:/admin/movie/create";
         }
@@ -61,10 +66,30 @@ public class AdminController {
     }
 
     @GetMapping("/movie/set")
-    public String movieSet(Model model) {
+    public String movieSet(@RequestParam("id") long id, Model model) {
+
+        Movies movies = movieService.movieDetail(id);
+
         model.addAttribute("content", "admin/movie/movie_set");
         model.addAttribute("title", "admin-movie-set");
+        model.addAttribute("movie", movies);
+
         return "admin/layout/admin_base";
+    }
+
+    @PostMapping("/movie/set")
+    public String scheduleSet(@ModelAttribute MovieSchedulesWrapper schedulesWrapper) {
+
+        List<Schedules> schedules = schedulesWrapper.getSchedules();
+
+        schedules.forEach(schedule -> {
+            System.out.println("Received Schedule: " + schedule);
+        });
+
+        scheduleService.insertScheduleWithSeat(schedules);
+
+        return "redirect:/admin/movie/list";
+
     }
 
     @GetMapping("/movie/update")
@@ -80,7 +105,7 @@ public class AdminController {
     }
 
     @PostMapping("/movie/update")
-    public String movieUpdate(Movies movies, Model model) {
+    public String movieUpdate(Movies movies) {
 
         long result = movieService.updateMovie(movies);
 
@@ -152,7 +177,7 @@ public class AdminController {
     }
 
     @PostMapping("/coupon/update")
-    public String updateCoupon(Coupons coupons, Model model) {
+    public String updateCoupon(Coupons coupons) {
 
         long result = couponService.updateCoupon(coupons);
 

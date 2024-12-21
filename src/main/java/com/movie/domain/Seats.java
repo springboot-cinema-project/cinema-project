@@ -6,8 +6,10 @@ import lombok.Data;
 public class Seats {
 
     private long id;
-    private long theaterScreenId;
-    private long seatNumber;
+    private int screenId;
+    private long scheduleId;
+    private char seatColumn;
+    private long seatRow;
     private long seatPrice;
 
 }
