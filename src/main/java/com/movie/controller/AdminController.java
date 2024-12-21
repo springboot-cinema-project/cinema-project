@@ -105,6 +105,7 @@ public class AdminController {
     }
 
     @PostMapping("/movie/update")
+
     public String movieUpdate(Movies movies) {
 
         long result = movieService.updateMovie(movies);
