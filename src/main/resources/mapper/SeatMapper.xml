@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.movie.mapper.SeatMapper">
+    <!-- SQL 문 -->
+    <insert id="insertSeat" parameterType="list">
+        INSERT INTO seats (screen_id, schedule_id, seat_column, seat_row, seat_price)
+        VALUES
+        <foreach collection="list" item="seat" separator=",">
+            (#{seat.screenId}, #{seat.scheduleId}, #{seat.seatColumn}, #{seat.seatRow}, #{seat.seatPrice})
+        </foreach>
+    </insert>
+</mapper>

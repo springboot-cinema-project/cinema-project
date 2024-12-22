@@ -7,9 +7,8 @@ import java.util.List;
 @Data
 public class Screens {
 
-    private long id;
+    private int id;
     private String screenName;
-    private long totalSeat;
+    private String screenType;
 
-    private List<Seats> seatList;
 }

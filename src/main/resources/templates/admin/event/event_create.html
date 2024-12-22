@@ -9,7 +9,7 @@
                                 <tr>
                                     <th><label for="event_name">event_name</label></th>
                                     <td>
-                                        <input type="text" class="form-control" name="eventTitle" id="event_name" placeholder="event_name">
+                                        <input type="text" class="form-control" name="eventTitle" id="event_name" required placeholder="event_name">
                                     </td>
                                 </tr>
                                 <tr>
@@ -21,25 +21,25 @@
                                 <tr>
                                     <th><label for="event_start">event_start</label></th>
                                     <td>
-                                        <input type="date" class="form-control" name="eventStartDate" id="event_start">
+                                        <input type="date" class="form-control" name="eventStartDate" id="event_start" required>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th><label for="event_end">event_end</label></th>
                                     <td>
-                                        <input type="date" class="form-control" name="eventEndDate" id="event_end">
+                                        <input type="date" class="form-control" name="eventEndDate" id="event_end" required>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th><label for="event_content">event_content</label></th>
                                     <td>
-                                        <textarea class="form-control" name="eventContent" id="event_content" placeholder="event_content" style="width:100%; resize:none; padding:8px; height:300px;"></textarea>
+                                        <textarea class="form-control" name="eventContent" id="event_content" required placeholder="event_content" style="width:100%; resize:none; padding:8px; height:300px;"></textarea>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th><label for="coupon">coupon</label></th>
                                     <td>
-                                        <select class="form-select" name="couponId" id="coupon">
+                                        <select class="form-select" name="couponId" id="coupon" required>
                                             <th:block th:each="coupon : ${coupons}">
                                                 <option th:value="${coupon.id}" th:text="${coupon.couponTitle}" th:attr="data-couponId=${coupon.id}"></option>
                                             </th:block>

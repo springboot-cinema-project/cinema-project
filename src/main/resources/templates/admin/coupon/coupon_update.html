@@ -28,6 +28,7 @@
                             <td>
                                 <input type="number" class="form-control" name="couponPrice" id="coupon_price" min="1" required th:value="${coupon.couponPrice}">
                                 <div id="priceError" class="text-danger" style="display: none;">Invalid coupon price.</div>
+                                <div id="error-message" style="color: red; display: none;">Please enter a valid number.</div>
                             </td>
                         </tr>
                     </table>
@@ -114,5 +115,18 @@
             // 폼 제출
             $("#couponForm").submit();
         }
+
+        document.getElementById("coupon_price").addEventListener("input", function (event) {
+            const inputField = event.target;
+            const value = inputField.value;
+
+            // 숫자만 포함되도록 검사
+            if (!/^\d*$/.test(value)) {
+                inputField.value = value.replace(/\D/g, ""); // 숫자가 아닌 문자는 제거
+                document.getElementById("error-message").style.display = "block";
+            } else {
+                document.getElementById("error-message").style.display = "none";
+            }
+        });
     </script>
 </th:block>
