@@ -12,5 +12,5 @@ import org.springframework.context.annotation.Configuration;
 public class FileProperties {
 
 	private String uploadDir;
-	
+
 }

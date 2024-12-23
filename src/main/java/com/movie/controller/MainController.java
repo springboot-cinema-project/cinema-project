@@ -13,10 +13,5 @@ public class MainController {
 		model.addAttribute("title", "ホーム");
 		return "layout/base";
 	}
-	
-	@GetMapping("/login")
-	public String loginPage() {
-		return "login";
-	}
-	
+
 }
