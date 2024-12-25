@@ -4,7 +4,7 @@
         <div class="row bg-light rounded align-items-center justify-content-center mx-0">
             <div class="col-md-10"> <!-- 폼의 최대 너비를 설정 -->
                 <h1 class="mb-3 text-center">映画編集</h1>
-                <form name="movie" method="post" action="/admin/movie/update" th:object="${movie}">
+                <form name="movie" method="post" action="/admin/movie/update" th:object="${movie}" enctype="multipart/form-data">
                     <input type="hidden" th:field="${movie.id}">
                     <table class="table table-borderless" >
                         <tr>
@@ -97,7 +97,7 @@
                         <tr>
                             <th><label for="poster_img">poster_img</label></th>
                             <td>
-                                <input type="file" class="form-control" name="posterImg" id="poster_img">
+                                <input type="file" class="form-control" name="poster_img" id="poster_img">
                             </td>
                         </tr>
                         <tr>

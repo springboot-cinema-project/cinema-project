@@ -1,5 +1,6 @@
 package com.movie.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.movie.domain.Coupons;
 import com.movie.domain.Events;
 import com.movie.domain.Movies;
@@ -8,13 +9,18 @@ import com.movie.service.CouponService;
 import com.movie.service.EventService;
 import com.movie.service.MovieService;
 import com.movie.service.ScheduleService;
+import com.movie.util.FileUtil;
 import com.movie.util.MovieSchedulesWrapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -26,6 +32,7 @@ public class AdminController {
     private final CouponService couponService;
     private final EventService eventService;
     private final ScheduleService scheduleService;
+    private final FileUtil fileUtil;
 
     @GetMapping({"", "/"})
     public String admin(Model model) {
@@ -42,12 +49,22 @@ public class AdminController {
     }
 
     @PostMapping("/movie/create")
-    public String insertMovie(Movies movies) {
+    public String insertMovie(Model model,Movies movies, MultipartFile poster_img) {
+        try {
+            if(!poster_img.isEmpty()) {
 
+                String filePath = fileUtil.saveFile(poster_img, true);
+
+                movies.setPosterImg(filePath);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "redirect:/admin/movie/create";
+        }
         long id = movieService.insertMovie(movies);
 
         if(id > 0) {
-            return "redirect:/admin/movie/set?id=" + id;
+            return "redirect:/admin/movie/set?id=" + movies.getId();
         } else {
             return "redirect:/admin/movie/create";
         }
@@ -69,10 +86,12 @@ public class AdminController {
     public String movieSet(@RequestParam("id") long id, Model model) {
 
         Movies movies = movieService.movieDetail(id);
+        List<Schedules> schedules = scheduleService.usedScheduleList();
 
         model.addAttribute("content", "admin/movie/movie_set");
         model.addAttribute("title", "admin-movie-set");
         model.addAttribute("movie", movies);
+        model.addAttribute("schedules", schedules);
 
         return "admin/layout/admin_base";
     }
@@ -81,10 +100,6 @@ public class AdminController {
     public String scheduleSet(@ModelAttribute MovieSchedulesWrapper schedulesWrapper) {
 
         List<Schedules> schedules = schedulesWrapper.getSchedules();
-
-        schedules.forEach(schedule -> {
-            System.out.println("Received Schedule: " + schedule);
-        });
 
         scheduleService.insertScheduleWithSeat(schedules);
 
@@ -106,17 +121,26 @@ public class AdminController {
 
     @PostMapping("/movie/update")
 
-    public String movieUpdate(Movies movies) {
+    public String movieUpdate(Movies movies, MultipartFile poster_img) {
+
+        try {
+            if(!poster_img.isEmpty()) {
+
+                String filePath = fileUtil.saveFile(poster_img, true);
+
+                movies.setPosterImg(filePath);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "redirect:/admin/movie/create";
+        }
 
         long result = movieService.updateMovie(movies);
 
         if(result > 0) {
             return "redirect:/admin/movie/list";
         } else {
-
-            long id = movies.getId();
-
-            return "redirect:/admin/movie/update";
+            return "redirect:/admin/movie/update?id" + movies.getId();
         }
     }
 
@@ -218,7 +242,19 @@ public class AdminController {
     }
 
     @PostMapping("/event/create")
-    public String insertEvent(Events events) {
+    public String insertEvent(Events events, MultipartFile event_img) {
+
+        try {
+            if(!event_img.isEmpty()) {
+
+                String filePath = fileUtil.saveFile(event_img, false);
+
+                events.setEventImg(filePath);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "redirect:/admin/movie/create";
+        }
 
         long result = eventService.insertEvent(events);
 
@@ -257,7 +293,19 @@ public class AdminController {
     }
 
     @PostMapping("/event/update")
-    public String updateEvent(Events events) {
+    public String updateEvent(Events events, MultipartFile event_img) {
+
+        try {
+            if(!event_img.isEmpty()) {
+
+                String filePath = fileUtil.saveFile(event_img, false);
+
+                events.setEventImg(filePath);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "redirect:/admin/movie/create";
+        }
 
         long result = eventService.updateEvent(events);
 
