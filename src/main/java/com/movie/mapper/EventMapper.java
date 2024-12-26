@@ -24,4 +24,12 @@ public interface EventMapper {
 
     @Delete("DELETE FROM events WHERE id = #{id}")
     public long deleteEvent(long id);
+
+
+    public List<Events> eventStart();
+
+    public List<Events> eventEnd();
+
+
+
 }

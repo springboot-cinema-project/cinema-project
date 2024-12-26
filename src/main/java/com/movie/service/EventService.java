@@ -34,4 +34,13 @@ public class EventService {
     public long deleteEvent(long id) {
         return eventMapper.deleteEvent(id);
     }
+
+    public List<Events> eventStart() {
+        return eventMapper.eventStart();  // Mapper 메서드 호출
+    }
+
+    public List<Events> eventEnd() {
+        return eventMapper.eventEnd();  // Mapper 메서드 호출
+    }
+
 }

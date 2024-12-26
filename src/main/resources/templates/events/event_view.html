@@ -1,0 +1,137 @@
+<section th:fragment="content">
+	<!-- prs title wrapper Start -->
+	<div class="prs_title_main_sec_wrapper">
+		<div class="prs_title_img_overlay"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="prs_title_heading_wrapper">
+						<h2>Event Single Page</h2>
+						<ul>
+							<li><a href="#">Home</a></li>
+							<li>&nbsp;&nbsp; >&nbsp;&nbsp; Event</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- prs title wrapper End -->
+
+	<!-- prs es about wrapper Start -->
+	<div class="prs_es_about_main_section_wrapper">
+		<div class="container">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="hs_blog_view_img_wrapper prs_event_single_slider_wrapper">
+					<img th:src="@{'/event/' + ${view.eventImg}}" alt="Event Image" class="event-image">
+					<div th:attr="data-id=${view.id}" class="overlay-content">
+						<h1 class="merry-christmas"></h1>
+						<div class="title-box">
+							<p th:text="${view.eventTitle}">Default Title</p>
+						</div>
+						<div class="time-box">
+							<p th:text="${view.eventStartDate} + ' ~ ' + ${view.eventEndDate}">Default Start Date ~ Default End Date</p>
+						</div>
+						<div class="content-box">
+							<p th:text="${view.eventContent}">Default Content</p>
+						</div>
+						<div class="button-box">
+							<a href="#" class="event-button">Send a Letter</a>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<!-- prs es about wrapper End -->
+</section>
+
+<style>
+	.overlay-content {
+      position: absolute;
+      top: 42%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: white;
+      width: 750px;
+    }
+
+    .merry-christmas {
+      font-size: 48px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .title-box {
+      background: rgba(255, 255, 255, 0.8);
+      padding: 20px 20px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      height: 70px;
+      font-size: 30px;
+      color: black;
+      font-weight: bold;
+    }
+
+    .time-box {
+      background: rgba(255, 255, 255, 0.8);
+      padding: 20px 20px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      height: 70px;
+      font-size: 30px;
+      color: black;
+      font-weight: bold;
+    }
+
+    .content-box {
+    background: rgba(255, 255, 255, 0.8); /* 배경색 */
+    padding: 20px; /* 내부 여백 */
+    border-radius: 10px; /* 모서리 둥글게 */
+    min-height: 600px; /* 최소 높이 */
+    position: relative; /* 위치 설정 */
+    white-space: pre-line; /* 줄바꿈과 공백 유지 */
+    text-align: left; /* 텍스트 좌측 정렬 */
+    font-size: 22px; /* 폰트 크기 */
+    line-height: 1.8; /* 줄 간격 */
+    word-wrap: break-word; /* 박스를 넘는 텍스트 줄바꿈 */
+    overflow-wrap: break-word; /* 긴 단어 줄바꿈 */
+    color: black;
+    font-weight: bold;
+}
+
+
+    .button-box {
+      position: absolute;
+      top: 120%; /* 버튼 위치를 조정 가능 */
+      left: 50%;
+      transform: translate(-50%, -50%);
+      margin-top: 20px;
+    }
+
+    .event-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #ff0000b3;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-size: 35px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+      height: 120px;
+      width: 500px;
+      text-align: center;
+    }
+
+    .event-button:hover {
+      background-color: #ff6347;
+    }
+</style>

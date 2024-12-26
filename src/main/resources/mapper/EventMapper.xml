@@ -30,6 +30,20 @@
             coupon_id = #{couponId}
         WHERE
             id = #{id}
-
     </update>
+
+    <select id="eventStart" resultType="com.movie.domain.Events">
+        SELECT id, event_title, event_content, event_start_date, event_end_date, event_img
+        FROM events
+        WHERE event_end_date &gt; NOW()
+        ORDER BY id DESC;
+    </select>
+
+    <select id="eventEnd" resultType="com.movie.domain.Events">
+        SELECT id, event_title, event_content, event_start_date, event_end_date, event_img
+        FROM events
+        WHERE event_end_date &lt; NOW()
+        ORDER BY id DESC;
+    </select>
+
 </mapper>

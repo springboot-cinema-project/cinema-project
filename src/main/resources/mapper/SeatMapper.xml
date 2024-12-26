@@ -7,8 +7,8 @@
     <insert id="insertSeat" parameterType="list">
         INSERT INTO seats (screen_id, schedule_id, seat_column, seat_row, seat_price)
         VALUES
-        <foreach collection="list" item="seat" separator=",">
-            (#{seat.screenId}, #{seat.scheduleId}, #{seat.seatColumn}, #{seat.seatRow}, #{seat.seatPrice})
+        <foreach collection="list" item="seats" separator=",">
+            (#{seats.screenId}, #{seats.scheduleId}, #{seats.seatColumn}, #{seats.seatRow}, #{seats.seatPrice})
         </foreach>
     </insert>
 </mapper>
