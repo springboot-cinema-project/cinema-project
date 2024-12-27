@@ -1,18 +1,4 @@
 <nav th:fragment="navbar">
-	<style>
-		.logout-button {
-            font-size: 12px;
-            border: 1px solid #ccc;
-            background-color: transparent;
-            color: #333;
-            text-decoration: none;
-            border-radius: 4px;
-        }
-
-        .logout-button span {
-            font-weight: bold;
-        }
-	</style>
 	<!-- preloader Start -->
 	<div id="preloader">
 		<div id="status">
@@ -56,7 +42,7 @@
 				<button><i class="fa fa-search" aria-hidden="true"></i>
 				</button>
 			</div>
-			<div class="prs_navi_left_main_wrapper" style="width: 43%;">
+			<div class="prs_navi_left_main_wrapper">
 				<div class="prs_logo_main_wrapper">
 					<a th:href="@{index.html}">
 						<img th:src="@{/images/header/logo.png}" alt="logo" />
@@ -298,29 +284,21 @@
 					</nav>
 				</div>
 			</div>
-			<div class="prs_navi_right_main_wrapper" style="width: 57%;">
+			<div class="prs_navi_right_main_wrapper">
 				<div class="prs_slidebar_wrapper">
 					<button class="second-nav-toggler" type="button">
 						<img th:src="@{/images/header/bars.png}" alt="bar_png">
 					</button>
 				</div>
-				<div class="prs_top_login_btn_wrapper" th:style="${session.USER != null} ? 'width: 390px;' : ''">
+				<div class="prs_top_login_btn_wrapper">
 					<div class="prs_animate_btn1">
 						<ul>
-							<li th:if="${session.USER != null}" style="float: left;">
-								<a th:href="@{/mypage/}" class="button button--tamaya" data-text="My Page" style="background-color: #1b1b1b; width: 180px;"><span>My Page</span></a>
-							</li>
-							<li th:if="${session.USER == null}">
-								<a th:href="@{#}" class="button button--tamaya" data-text="LOGIN" data-toggle="modal" data-target="#myModal" style="background-color: #1b1b1b; width: 180px;"><span>LOGIN</span></a>
-							</li>
-							<li th:if="${session.USER != null}">
-								<!-- 로그아웃 버튼 -->
-								<a th:href="@{/user/logout}" class="button logout-button" data-text="Logout" style="margin-left: 5%; border: 1px solid #fff; width: 180px;"><span>Logout</span></a>
+							<li><a th:href="@{#}" class="button button--tamaya" data-text="sign up" data-toggle="modal" data-target="#myModal"><span>sign up</span></a>
 							</li>
 						</ul>
 					</div>
 				</div>
-				<div class="product-heading" style="width:60%;">
+				<div class="product-heading">
 					<div class="con">
 						<select>
 							<option>All Categories</option>
@@ -329,7 +307,7 @@
 							<option>Music</option>
 							<option>TV-Show</option>
 						</select>
-						<input type="text" placeholder="Search Movie , Video , Music" style="width:62%;">
+						<input type="text" placeholder="Search Movie , Video , Music">
 						<button type="submit"><i class="flaticon-tool"></i>
 						</button>
 					</div>
@@ -418,15 +396,7 @@
 					<div class="prs_top_login_btn_wrapper prs_slidebar_searchbar_btn_wrapper">
 						<div class="prs_animate_btn1">
 							<ul>
-								<li th:if="${session.USER != null}">
-									<a th:href="@{/mypage/}" class="button button--tamaya" data-text="My Page" style="width: 180px; background-color: #1b1b1b;"><span>My Page</span></a>
-								</li>
-								<li th:if="${session.USER == null}">
-									<a th:href="@{#}" class="button button--tamaya" data-text="LOGIN" data-toggle="modal" data-target="#myModal" style="width: 180px; background-color: #1b1b1b;"><span>LOGIN</span></a>
-								</li>
-								<li th:if="${session.USER != null}">
-									<!-- 로그아웃 버튼 -->
-									<a th:href="@{/user/logout}" class="button logout-button" data-text="Logout" style="margin-left: 3%; width: 180px; border: 1px solid #1b1b1b;"><span style="color: #1b1b1b;">Logout</span></a>
+								<li><a th:href="@{#}" class="button button--tamaya" data-text="sign up" data-toggle="modal" data-target="#myModal"><span>sign up</span></a>
 								</li>
 							</ul>
 						</div>

@@ -12,6 +12,7 @@ import java.util.List;
 @Mapper
 public interface MovieMapper {
 
+    @Options(useGeneratedKeys = true, keyProperty = "id")
     public long insertMovie(Movies movies);
 
     @Select("SELECT * FROM movies ORDER BY id DESC")
@@ -24,8 +25,4 @@ public interface MovieMapper {
 
     @Delete("DELETE FROM movies WHERE id = #{id}")
     public long deleteMovie(long id);
-
-    public List<Movies> upcomingMovie();
-    public List<Movies> releasedMovie();
-    public List<Movies> bestMovies();
 }

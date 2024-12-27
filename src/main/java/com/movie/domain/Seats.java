@@ -5,11 +5,12 @@ import lombok.Data;
 @Data
 public class Seats {
 
-    private long id;
-    private int screenId;
-    private long scheduleId;
+    private Long id;
+    private Integer screenId;
+    private Long scheduleId;
     private char seatColumn;
-    private long seatRow;
-    private long seatPrice;
+    private Long seatRow;
+    private Long seatPrice;
+    private Integer state;
 
 }

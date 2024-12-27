@@ -4,7 +4,7 @@
 
 <mapper namespace="com.movie.mapper.MovieMapper">
     <!-- SQL 문 -->
-    <insert id="insertMovie" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertMovie">
         INSERT INTO
             movies (title, eng_title, running_time, release_date, end_date, country, production, distribution, genre, director, actor, poster_img, content)
             VALUES (#{title}, #{engTitle}, #{runningTime}, #{releaseDate}, #{endDate}, #{country}, #{production}, #{distribution}, #{genre}, #{director}, #{actor}, #{posterImg}, #{content})
@@ -29,30 +29,7 @@
             content = #{content}
         WHERE
             id = #{id}
-    </update>
 
-    <select id="upcomingMovie" resultType="com.movie.domain.Movies">
-        SELECT
-            *
-        FROM
-            movies
-        WHERE
-            release_date <![CDATA[>]]> NOW()
-    </select>
-    <select id="releasedMovie" resultType="com.movie.domain.Movies">
-        SELECT
-            *
-        FROM
-            movies
-        WHERE
-            release_date <![CDATA[<=]]> NOW() AND end_date <![CDATA[>=]]> NOW()
-    </select>
-    <select id="bestMovies" resultType="com.movie.domain.Movies">
-        SELECT
-            *
-        FROM
-            movies
-        WHERE
-            end_date <![CDATA[<]]> NOW()
-    </select>
+
+    </update>
 </mapper>

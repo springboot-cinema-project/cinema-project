@@ -5,8 +5,8 @@ import lombok.Data;
 @Data
 public class MovieDetails {
 
-    private long id;
-    private long movieId;
+    private Long id;
+    private Long movieId;
     private String trailer;
     private String movieImg;
 }

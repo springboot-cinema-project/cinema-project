@@ -4,12 +4,13 @@ import lombok.Data;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @Data
 public class ScreenScheduleSeatDto {
 
-    private long scheduleId;
-    private long movieId;
+    private Long scheduleId;
+    private Long movieId;
     private LocalDate watchDate;
     private LocalTime startTime;
     private LocalTime endTime;
@@ -17,5 +18,7 @@ public class ScreenScheduleSeatDto {
     private String screenName;
     private String screenType;
 
-    private long seatPrice;
+    private Long seatPrice;
+
+    private List<Seats> seatList;
 }

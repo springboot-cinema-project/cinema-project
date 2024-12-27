@@ -5,10 +5,10 @@ import lombok.Data;
 @Data
 public class Tickets {
 
-    private long id;
-    private long price;
-    private long ticket_status;
-    private long seatId;
-    private long booking_id;
+    private Long id;
+    private Long price;
+    private Long ticket_status;
+    private Long seatId;
+    private Long booking_id;
 
 }

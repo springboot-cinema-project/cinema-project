@@ -34,43 +34,4 @@ public class MovieService {
     public long deleteMovie(long id) {
         return movieMapper.deleteMovie(id);
     }
-
-    public List<Movies> upcomingMovie() {
-
-        List<Movies> movies = movieMapper.upcomingMovie();
-
-//        for(Movies movie : movies) {
-//
-//            movie.setPosterImg(movie.getPosterImg().replace("\\", "/"));
-//
-//        }
-
-        return movies;
-    }
-
-    public List<Movies> releasedMovie() {
-
-        List<Movies> movies = movieMapper.releasedMovie();
-
-//        for(Movies movie : movies) {
-//
-//            movie.setPosterImg(movie.getPosterImg().replace("\\", "/"));
-//
-//        }
-
-        return movies;
-    }
-
-    public List<Movies> bestMovies() {
-
-        List<Movies> movies = movieMapper.bestMovies();
-
-//        for(Movies movie : movies) {
-//
-//            movie.setPosterImg(movie.getPosterImg().replace("\\", "/"));
-//
-//        }
-
-        return movies;
-    }
 }

@@ -13,7 +13,6 @@ import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserServ
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import jakarta.servlet.http.HttpSession;
 
@@ -29,20 +28,19 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http, HttpSession session, CustomOAuth2UserService customOAuth2UserService, AuthenticationFailureHandler failureHandler) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, HttpSession session, CustomOAuth2UserService customOAuth2UserService) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/event/**", "/user/**", "/css/**", "/images/**", "/js/**", "/fonts/**", "/api/auth/**", "/test/**", "/booking/**", "/admin/**").permitAll()
-                    //   .requestMatchers("/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/mypage/**").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers("/", "/event/**", "/user/**", "/mypage/**", "/css/**", "/images/**", "/js/**", "/fonts/**", "/api/auth/**", "/test/**").permitAll()
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .formLogin(login -> login
                         .loginPage("/")
                         .loginProcessingUrl("/user/login")
                         .defaultSuccessUrl("/", true)
-                        .failureHandler(failureHandler)
+                        .failureUrl("/?error=true")
                         .usernameParameter("username")
                         .passwordParameter("password")
                         .successHandler(authenticationSuccessHandler(session, userMapper)) // 공통 핸들러 사용

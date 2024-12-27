@@ -31,11 +31,14 @@ public class UserController {
 
     @PostMapping("/checkemail")
     @ResponseBody
-    public Map<String, Boolean> checkEmail(@RequestBody Map<String, String> payload) {
+    public Map<String, Object> checkEmail(@RequestBody Map<String, String> payload) {
         String email = payload.get("email");
         boolean exists = userService.isEmailRegistered(email);
-        Map<String, Boolean> response = new HashMap<>();
+        Map<String, Object> response = new HashMap<>();
         response.put("exists", exists);
+        if (exists) {
+            response.put("message", "このメールアドレスは既に登録されています。");
+        }
         return response;
     }
 
