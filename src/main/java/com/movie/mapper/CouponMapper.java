@@ -10,6 +10,7 @@ public interface CouponMapper {
 
     @Insert("INSERT INTO coupons (coupon_title, coupon_type, coupon_price) " +
             " VALUES (#{couponTitle}, #{couponType}, #{couponPrice})")
+    @Options(useGeneratedKeys = true, keyProperty = "id")
     long insertCoupon(Coupons coupons);
 
     @Select("SELECT * FROM coupons ORDER BY id DESC")

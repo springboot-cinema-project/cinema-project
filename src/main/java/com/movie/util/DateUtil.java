@@ -3,6 +3,8 @@ package com.movie.util;
 import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 @Component
@@ -18,6 +20,17 @@ public class DateUtil {
 	public String format(Date date, String format) {
 		SimpleDateFormat formatter = new SimpleDateFormat(format);
 		return formatter.format(date);
+	}
+
+	// LocalDateTime을 포맷팅
+	public String format(LocalDateTime dateTime, String format) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
+		return dateTime.format(formatter);
+	}
+
+	// 기본 포맷으로 LocalDateTime 포맷팅
+	public String format(LocalDateTime dateTime) {
+		return format(dateTime, DEFAULT_FORMAT);
 	}
 	
 //	문자열을 Date 객체로 변환

@@ -12,6 +12,7 @@ public interface UserMapper {
 
     @Insert("INSERT INTO users (email, password, name, phone, birth) " +
             "VALUES (#{email}, #{password}, #{name}, #{phone}, #{birth})")
+    @Options(useGeneratedKeys = true, keyProperty = "id")
     void insertUser(User user);
 
     @Insert("INSERT INTO users (email, name, social_id, social_provider, role, created_at, updated_at) " +
