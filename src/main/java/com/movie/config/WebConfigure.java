@@ -1,6 +1,5 @@
 package com.movie.config;
 
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -15,17 +14,12 @@ public class WebConfigure implements WebMvcConfigurer {
     @Value("${file.upload.event-dir}")
     private String eventUploadDir;
 
-    @Value("${file.upload-dir}")
-    private String uploadDir;
-
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/poster/**")
-                .addResourceLocations("file:C:/upload/poster/");
+                .addResourceLocations("file:" + posterUploadDir + "/");
         registry.addResourceHandler("/event/**")
-                .addResourceLocations("file:C:/upload/event/");
-        registry.addResourceHandler("/upload/**")
-                .addResourceLocations("file:C:/upload/");
+                .addResourceLocations("file:" + eventUploadDir + "/");
+        // 필요한 경우 추가적인 핸들러 설정
     }
-
 }

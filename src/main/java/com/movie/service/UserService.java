@@ -17,12 +17,18 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private EventService eventService;
+
     public void register(User user) {
         if (isEmailRegistered(user.getEmail())) {
             throw new IllegalArgumentException("このメールアドレスは既に登録されています: " + user.getEmail());
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userMapper.insertUser(user);
+
+        long userid = (long)user.getId();
+        eventService.userEvent(userid);
     }
 
     public boolean isEmailRegistered(String email) {

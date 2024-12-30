@@ -1,7 +1,6 @@
 package com.movie.service;
 
 import com.movie.domain.Schedules;
-import com.movie.domain.ScreenScheduleSeatDto;
 import com.movie.domain.Seats;
 import com.movie.mapper.ScheduleMapper;
 import com.movie.mapper.SeatMapper;
@@ -25,7 +24,7 @@ public class ScheduleService {
         for (Schedules schedule : schedules) {
 
             long id = scheduleMapper.insertSchedule(schedule);
-            id = schedule.getId();
+
             int screenId = schedule.getScreenId();
             long seatPrice = getPriceByScreen(screenId);
 
@@ -67,18 +66,6 @@ public class ScheduleService {
                 throw new IllegalArgumentException("Invalid screen ID: " + screenId);
         }
 
-    }
-
-    public List<Schedules> schedulesList() {
-        return scheduleMapper.scheduleList();
-    }
-
-    public List<ScreenScheduleSeatDto> movieSchedulesList(long movieId) {
-        return scheduleMapper.movieScheduleList(movieId);
-    }
-
-    public List<Schedules> usedScheduleList() {
-        return scheduleMapper.usedScheduleList();
     }
 
 }

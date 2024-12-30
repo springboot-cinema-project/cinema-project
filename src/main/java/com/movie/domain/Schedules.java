@@ -8,9 +8,9 @@ import java.time.LocalTime;
 @Data
 public class Schedules {
 
-    private long id;
-    private int screenId;
-    private long movieId;
+    private Long id;
+    private Integer screenId;
+    private Long movieId;
     private LocalDate watchDate;
     private LocalTime startTime;
     private LocalTime endTime;

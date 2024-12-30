@@ -7,8 +7,8 @@ import java.time.LocalDateTime;
 @Data
 public class Bookings {
 
-    private long id;
-    private long usersId;
-    private long scheduleId;
+    private Long id;
+    private Long usersId;
+    private Long scheduleId;
     private LocalDateTime timestamp;
 }
